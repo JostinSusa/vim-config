@@ -8,14 +8,17 @@ set showcmd
 set ruler
 set encoding=utf-8
 set showmatch
-set sw=4
+set sw=2
 set relativenumber
 set laststatus=2
+
 
 call plug#begin('~/.vim/plugged')
 
 " Temas
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'drewtempelmeyer/palenight.vim'
 
 " IDE
 Plug 'easymotion/vim-easymotion'
@@ -33,11 +36,16 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdcommenter'
 Plug 'beanworks/vim-phpfmt'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
-
+"Tema Actual ------------------------------------
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = "hard"
+" set background=dark
+" colorscheme palenight
+" colorscheme nord
+
+" let g:gruvbox_contrast_dark = "hard"
 let NERDTreeQuitOnOpen=1
 let g:user_emmet_leader_key=','
 "let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiertos (como pestañas)
@@ -71,7 +79,6 @@ let mapleader=" "
 
 nmap <Leader>s <Plug>(easymotion-s2)
 nmap <Leader>nt :NERDTreeFind<CR>
-
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>wq :wq<CR>
@@ -79,7 +86,7 @@ nmap <Leader>br :bro ol<CR>
 nmap <Leader>bf :buffers<CR>
 nmap <Leader>b :b
 nmap <Leader>fs :FZF<CR>
-nmap <Leader>pf :PhpFmt<CR>
+nmap <Leader>ff :PhpFmt<CR>
 
 "GoTO code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -93,6 +100,34 @@ inoremap [ []<Esc>i
 inoremap ` ``<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
+
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
