@@ -11,8 +11,13 @@ set showmatch
 set sw=2
 set relativenumber
 set laststatus=2
+set autoindent cindent smartindent showmatch
+set smartindent
 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
+call vundle#end()
 call plug#begin('~/.vim/plugged')
 
 " Temas
@@ -37,6 +42,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdcommenter'
 Plug 'beanworks/vim-phpfmt'
 Plug 'tpope/vim-commentary'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 "Tema Actual ------------------------------------
@@ -57,7 +63,6 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 
-
 "Ulti Snips
 let g:UltiSnipsExpandTrigger           = '<tab>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
@@ -77,7 +82,8 @@ set noshowmode  " No mostrar el modo actual (ya lo muestra la barra de estado)
 
 let mapleader=" "
 
-nmap <Leader>s <Plug>(easymotion-s2)
+
+nmap <Leader>m <Plug>(easymotion-s2)
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
@@ -87,6 +93,12 @@ nmap <Leader>bf :buffers<CR>
 nmap <Leader>b :b
 nmap <Leader>fs :FZF<CR>
 nmap <Leader>ff :PhpFmt<CR>
+nmap <Leader>tn :tabnext<CR>
+nmap <Leader>tp :tabprevious<CR>
+nmap <Leader>html :setfiletype html<CR>
+nmap <Leader>php :setfiletype php<CR>
+
+
 
 "GoTO code navigation
 nmap <silent> gd <Plug>(coc-definition)
